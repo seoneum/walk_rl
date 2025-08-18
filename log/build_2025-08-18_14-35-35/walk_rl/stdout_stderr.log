@@ -1,0 +1,72 @@
+-- The C compiler identification is GNU 11.4.0
+-- The CXX compiler identification is GNU 11.4.0
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /usr/bin/cc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Found CUDA: /usr/local/cuda-11.8 (found version "11.8") 
+-- The CUDA compiler identification is NVIDIA 11.8.89
+-- Detecting CUDA compiler ABI info
+-- Detecting CUDA compiler ABI info - done
+-- Check for working CUDA compiler: /usr/local/cuda-11.8/bin/nvcc - skipped
+-- Detecting CUDA compile features
+-- Detecting CUDA compile features - done
+-- Found CUDAToolkit: /usr/local/cuda-11.8/include (found version "11.8.89") 
+-- Looking for pthread.h
+-- Looking for pthread.h - found
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+-- Found Threads: TRUE  
+-- Caffe2: CUDA detected: 11.8
+-- Caffe2: CUDA nvcc is: /usr/local/cuda-11.8/bin/nvcc
+-- Caffe2: CUDA toolkit directory: /usr/local/cuda-11.8
+-- Caffe2: Header version is: 11.8
+[33mCMake Warning at /home/seoneum/libtorch/share/cmake/Caffe2/public/cuda.cmake:185 (message):
+  Failed to compute shorthash for libnvrtc.so
+Call Stack (most recent call first):
+  /home/seoneum/libtorch/share/cmake/Caffe2/Caffe2Config.cmake:87 (include)
+  /home/seoneum/libtorch/share/cmake/Torch/TorchConfig.cmake:68 (find_package)
+  CMakeLists.txt:29 (find_package)
+
+[0m
+-- USE_CUDNN is set to 0. Compiling without cuDNN support
+-- USE_CUSPARSELT is set to 0. Compiling without cuSPARSELt support
+-- Autodetected CUDA architecture(s):  8.6
+-- Added CUDA NVCC flags for: -gencode;arch=compute_86,code=sm_86
+-- Found Torch: /home/seoneum/libtorch/lib/libtorch.so  
+-- Found LibTorch at: /home/seoneum/libtorch/share/cmake/Torch
+-- Target Torch::Torch not found, creating compatibility target.
+-- Using MuJoCo (package): mujoco::mujoco
+-- OpenMP enabled
+-- Found GLFW3
+-- ==================================================
+-- Build type:        Release
+-- LibTorch:          /home/seoneum/libtorch/share/cmake/Torch
+-- MuJoCo:            package
+-- OpenMP:            Enabled
+-- Build ROS2 node:   OFF
+-- Build viewer:      ON
+-- ==================================================
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/seoneum/walk_rl/build/walk_rl
+[ 18%] [32mBuilding CXX object CMakeFiles/rl_core.dir/src/mj_env.cpp.o[0m
+[ 18%] [32mBuilding CXX object CMakeFiles/rl_core.dir/src/ars.cpp.o[0m
+[ 27%] [32mBuilding CXX object CMakeFiles/rl_core.dir/src/ppo.cpp.o[0m
+[ 36%] [32mBuilding CXX object CMakeFiles/rl_core.dir/src/rl_config.cpp.o[0m
+[ 45%] [32mBuilding CXX object CMakeFiles/rl_core.dir/src/elite_buffer.cpp.o[0m
+[ 54%] [32mBuilding CXX object CMakeFiles/rl_core.dir/src/gait_ref.cpp.o[0m
+[ 63%] [32m[1mLinking CXX static library librl_core.a[0m
+[ 63%] Built target rl_core
+[ 81%] [32mBuilding CXX object CMakeFiles/train_mjppo.dir/src/train.cpp.o[0m
+[ 81%] [32mBuilding CXX object CMakeFiles/quad_viewer.dir/src/viewer.cpp.o[0m
+[ 90%] [32m[1mLinking CXX executable train_mjppo[0m
+[ 90%] Built target train_mjppo
+[100%] [32m[1mLinking CXX executable quad_viewer[0m
+[100%] Built target quad_viewer

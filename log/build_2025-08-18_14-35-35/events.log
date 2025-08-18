@@ -1,0 +1,368 @@
+[0.000000] (-) TimerEvent: {}
+[0.000185] (walk_rl) JobQueued: {'identifier': 'walk_rl', 'dependencies': OrderedDict()}
+[0.000401] (walk_rl) JobStarted: {'identifier': 'walk_rl'}
+[0.004819] (walk_rl) JobProgress: {'identifier': 'walk_rl', 'progress': 'cmake'}
+[0.005157] (walk_rl) Command: {'cmd': ['/usr/bin/cmake', '/home/seoneum/walk_rl', '-DCMAKE_INSTALL_PREFIX=/home/seoneum/walk_rl/install/walk_rl'], 'cwd': '/home/seoneum/walk_rl/build/walk_rl', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'seoneum'), ('XDG_SESSION_TYPE', 'x11'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/usr/local/cuda-11.8/lib64:/usr/local/cuda-11.8/lib64:/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib:/path/to/mujoco/bin'), ('HOME', '/home/seoneum'), ('OLDPWD', '/home/seoneum/walk_rl/build'), ('DESKTOP_SESSION', 'ubuntu'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('SYSTEMD_EXEC_PID', '3206'), ('CUDNN_PATH', '/usr/local/cuda-11.8'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('_colcon_cd_root', '/opt/ros/humble/'), ('ROS_DISTRO', 'humble'), ('GTK_IM_MODULE', 'ibus'), ('LOGNAME', 'seoneum'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'seoneum'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('ROS_LOCALHOST_ONLY', '0'), ('WINDOWPATH', '2'), ('PATH', '/usr/local/cuda-11.8/bin:/usr/local/cuda-11.8/bin:/opt/ros/humble/bin:/opt/nvim-linux64/bin:/usr/lib/jvm/java-11-openjdk-amd64/bin:/home/seoneum/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin'), ('SESSION_MANAGER', 'local/seoneum-Stealth-15M-A11UEK:@/tmp/.ICE-unix/2929,unix/seoneum-Stealth-15M-A11UEK:/tmp/.ICE-unix/2929'), ('XDG_MENU_PREFIX', 'gnome-'), ('MUJOCO_DIR', '/home/seoneum/.mujoco/mujoco'), ('GNOME_TERMINAL_SCREEN', '/org/gnome/Terminal/screen/4e15af3a_0a87_48d0_8f3b_44144a597477'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('LIBTORCH_HOME', '/home/seoneum/libtorch'), ('DISPLAY', ':1'), ('MUJOCO_GL', 'glfw'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/gdm/Xauthority'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('GNOME_TERMINAL_SERVICE', ':1.98'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('ROS_DOMAIN_ID', '7'), ('AMENT_PREFIX_PATH', '/opt/ros/humble'), ('SHELL', '/bin/bash'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('GPG_AGENT_INFO', '/run/user/1000/gnupg/S.gpg-agent:0:1'), ('QT_IM_MODULE', 'ibus'), ('JAVA_HOME', '/usr/lib/jvm/java-11-openjdk-amd64'), ('PWD', '/home/seoneum/walk_rl/build/walk_rl'), ('LC_ALL', 'en_US.UTF-8'), ('CUDA_HOME', '/usr/local/cuda-11.8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/share/gnome:/home/seoneum/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('VTE_VERSION', '6800')]), 'shell': False}
+[0.077327] (walk_rl) StdoutLine: {'line': b'-- The C compiler identification is GNU 11.4.0\n'}
+[0.099888] (-) TimerEvent: {}
+[0.110927] (walk_rl) StdoutLine: {'line': b'-- The CXX compiler identification is GNU 11.4.0\n'}
+[0.115755] (walk_rl) StdoutLine: {'line': b'-- Detecting C compiler ABI info\n'}
+[0.158934] (walk_rl) StdoutLine: {'line': b'-- Detecting C compiler ABI info - done\n'}
+[0.163346] (walk_rl) StdoutLine: {'line': b'-- Check for working C compiler: /usr/bin/cc - skipped\n'}
+[0.163445] (walk_rl) StdoutLine: {'line': b'-- Detecting C compile features\n'}
+[0.163690] (walk_rl) StdoutLine: {'line': b'-- Detecting C compile features - done\n'}
+[0.165605] (walk_rl) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info\n'}
+[0.199978] (-) TimerEvent: {}
+[0.213905] (walk_rl) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info - done\n'}
+[0.218583] (walk_rl) StdoutLine: {'line': b'-- Check for working CXX compiler: /usr/bin/c++ - skipped\n'}
+[0.218742] (walk_rl) StdoutLine: {'line': b'-- Detecting CXX compile features\n'}
+[0.219072] (walk_rl) StdoutLine: {'line': b'-- Detecting CXX compile features - done\n'}
+[0.232903] (walk_rl) StdoutLine: {'line': b'-- Found CUDA: /usr/local/cuda-11.8 (found version "11.8") \n'}
+[0.300093] (-) TimerEvent: {}
+[0.400342] (-) TimerEvent: {}
+[0.500595] (-) TimerEvent: {}
+[0.600807] (-) TimerEvent: {}
+[0.701103] (-) TimerEvent: {}
+[0.801354] (-) TimerEvent: {}
+[0.816672] (walk_rl) StdoutLine: {'line': b'-- The CUDA compiler identification is NVIDIA 11.8.89\n'}
+[0.819934] (walk_rl) StdoutLine: {'line': b'-- Detecting CUDA compiler ABI info\n'}
+[0.901466] (-) TimerEvent: {}
+[1.001772] (-) TimerEvent: {}
+[1.102000] (-) TimerEvent: {}
+[1.202261] (-) TimerEvent: {}
+[1.302514] (-) TimerEvent: {}
+[1.385654] (walk_rl) StdoutLine: {'line': b'-- Detecting CUDA compiler ABI info - done\n'}
+[1.401760] (walk_rl) StdoutLine: {'line': b'-- Check for working CUDA compiler: /usr/local/cuda-11.8/bin/nvcc - skipped\n'}
+[1.401932] (walk_rl) StdoutLine: {'line': b'-- Detecting CUDA compile features\n'}
+[1.402161] (walk_rl) StdoutLine: {'line': b'-- Detecting CUDA compile features - done\n'}
+[1.402581] (-) TimerEvent: {}
+[1.403676] (walk_rl) StdoutLine: {'line': b'-- Found CUDAToolkit: /usr/local/cuda-11.8/include (found version "11.8.89") \n'}
+[1.406200] (walk_rl) StdoutLine: {'line': b'-- Looking for pthread.h\n'}
+[1.452632] (walk_rl) StdoutLine: {'line': b'-- Looking for pthread.h - found\n'}
+[1.452812] (walk_rl) StdoutLine: {'line': b'-- Performing Test CMAKE_HAVE_LIBC_PTHREAD\n'}
+[1.497206] (walk_rl) StdoutLine: {'line': b'-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success\n'}
+[1.497854] (walk_rl) StdoutLine: {'line': b'-- Found Threads: TRUE  \n'}
+[1.502682] (-) TimerEvent: {}
+[1.510860] (walk_rl) StdoutLine: {'line': b'-- Caffe2: CUDA detected: 11.8\n'}
+[1.510927] (walk_rl) StdoutLine: {'line': b'-- Caffe2: CUDA nvcc is: /usr/local/cuda-11.8/bin/nvcc\n'}
+[1.510964] (walk_rl) StdoutLine: {'line': b'-- Caffe2: CUDA toolkit directory: /usr/local/cuda-11.8\n'}
+[1.574062] (walk_rl) StdoutLine: {'line': b'-- Caffe2: Header version is: 11.8\n'}
+[1.577272] (walk_rl) StderrLine: {'line': b'\x1b[33mCMake Warning at /home/seoneum/libtorch/share/cmake/Caffe2/public/cuda.cmake:185 (message):\n'}
+[1.577368] (walk_rl) StderrLine: {'line': b'  Failed to compute shorthash for libnvrtc.so\n'}
+[1.577405] (walk_rl) StderrLine: {'line': b'Call Stack (most recent call first):\n'}
+[1.577436] (walk_rl) StderrLine: {'line': b'  /home/seoneum/libtorch/share/cmake/Caffe2/Caffe2Config.cmake:87 (include)\n'}
+[1.577467] (walk_rl) StderrLine: {'line': b'  /home/seoneum/libtorch/share/cmake/Torch/TorchConfig.cmake:68 (find_package)\n'}
+[1.577498] (walk_rl) StderrLine: {'line': b'  CMakeLists.txt:29 (find_package)\n'}
+[1.577529] (walk_rl) StderrLine: {'line': b'\n'}
+[1.577560] (walk_rl) StderrLine: {'line': b'\x1b[0m\n'}
+[1.577590] (walk_rl) StdoutLine: {'line': b'-- USE_CUDNN is set to 0. Compiling without cuDNN support\n'}
+[1.577624] (walk_rl) StdoutLine: {'line': b'-- USE_CUSPARSELT is set to 0. Compiling without cuSPARSELt support\n'}
+[1.602844] (-) TimerEvent: {}
+[1.703084] (-) TimerEvent: {}
+[1.803326] (-) TimerEvent: {}
+[1.903575] (-) TimerEvent: {}
+[2.003830] (-) TimerEvent: {}
+[2.104049] (-) TimerEvent: {}
+[2.204307] (-) TimerEvent: {}
+[2.304571] (-) TimerEvent: {}
+[2.404993] (-) TimerEvent: {}
+[2.505202] (-) TimerEvent: {}
+[2.605488] (-) TimerEvent: {}
+[2.705768] (-) TimerEvent: {}
+[2.806180] (-) TimerEvent: {}
+[2.906456] (-) TimerEvent: {}
+[3.006730] (-) TimerEvent: {}
+[3.107028] (-) TimerEvent: {}
+[3.207314] (-) TimerEvent: {}
+[3.307599] (-) TimerEvent: {}
+[3.407929] (-) TimerEvent: {}
+[3.508162] (-) TimerEvent: {}
+[3.588708] (walk_rl) StdoutLine: {'line': b'-- Autodetected CUDA architecture(s):  8.6\n'}
+[3.588885] (walk_rl) StdoutLine: {'line': b'-- Added CUDA NVCC flags for: -gencode;arch=compute_86,code=sm_86\n'}
+[3.604056] (walk_rl) StdoutLine: {'line': b'-- Found Torch: /home/seoneum/libtorch/lib/libtorch.so  \n'}
+[3.604208] (walk_rl) StdoutLine: {'line': b'-- Found LibTorch at: /home/seoneum/libtorch/share/cmake/Torch\n'}
+[3.604274] (walk_rl) StdoutLine: {'line': b'-- Target Torch::Torch not found, creating compatibility target.\n'}
+[3.608234] (-) TimerEvent: {}
+[3.608417] (walk_rl) StdoutLine: {'line': b'-- Using MuJoCo (package): mujoco::mujoco\n'}
+[3.708366] (-) TimerEvent: {}
+[3.808671] (-) TimerEvent: {}
+[3.812882] (walk_rl) StdoutLine: {'line': b'-- OpenMP enabled\n'}
+[3.814673] (walk_rl) StdoutLine: {'line': b'-- Found GLFW3\n'}
+[3.814784] (walk_rl) StdoutLine: {'line': b'-- ==================================================\n'}
+[3.814824] (walk_rl) StdoutLine: {'line': b'-- Build type:        Release\n'}
+[3.814859] (walk_rl) StdoutLine: {'line': b'-- LibTorch:          /home/seoneum/libtorch/share/cmake/Torch\n'}
+[3.814895] (walk_rl) StdoutLine: {'line': b'-- MuJoCo:            package\n'}
+[3.814929] (walk_rl) StdoutLine: {'line': b'-- OpenMP:            Enabled\n'}
+[3.814963] (walk_rl) StdoutLine: {'line': b'-- Build ROS2 node:   OFF\n'}
+[3.814996] (walk_rl) StdoutLine: {'line': b'-- Build viewer:      ON\n'}
+[3.815028] (walk_rl) StdoutLine: {'line': b'-- ==================================================\n'}
+[3.815061] (walk_rl) StdoutLine: {'line': b'-- Configuring done\n'}
+[3.821117] (walk_rl) StdoutLine: {'line': b'-- Generating done\n'}
+[3.822812] (walk_rl) StdoutLine: {'line': b'-- Build files have been written to: /home/seoneum/walk_rl/build/walk_rl\n'}
+[3.827568] (walk_rl) CommandEnded: {'returncode': 0}
+[3.827947] (walk_rl) JobProgress: {'identifier': 'walk_rl', 'progress': 'build'}
+[3.828484] (walk_rl) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/seoneum/walk_rl/build/walk_rl', '--', '-j8', '-l8'], 'cwd': '/home/seoneum/walk_rl/build/walk_rl', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'seoneum'), ('XDG_SESSION_TYPE', 'x11'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/usr/local/cuda-11.8/lib64:/usr/local/cuda-11.8/lib64:/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib:/path/to/mujoco/bin'), ('HOME', '/home/seoneum'), ('OLDPWD', '/home/seoneum/walk_rl/build'), ('DESKTOP_SESSION', 'ubuntu'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('SYSTEMD_EXEC_PID', '3206'), ('CUDNN_PATH', '/usr/local/cuda-11.8'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('_colcon_cd_root', '/opt/ros/humble/'), ('ROS_DISTRO', 'humble'), ('GTK_IM_MODULE', 'ibus'), ('LOGNAME', 'seoneum'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'seoneum'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('ROS_LOCALHOST_ONLY', '0'), ('WINDOWPATH', '2'), ('PATH', '/usr/local/cuda-11.8/bin:/usr/local/cuda-11.8/bin:/opt/ros/humble/bin:/opt/nvim-linux64/bin:/usr/lib/jvm/java-11-openjdk-amd64/bin:/home/seoneum/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin'), ('SESSION_MANAGER', 'local/seoneum-Stealth-15M-A11UEK:@/tmp/.ICE-unix/2929,unix/seoneum-Stealth-15M-A11UEK:/tmp/.ICE-unix/2929'), ('XDG_MENU_PREFIX', 'gnome-'), ('MUJOCO_DIR', '/home/seoneum/.mujoco/mujoco'), ('GNOME_TERMINAL_SCREEN', '/org/gnome/Terminal/screen/4e15af3a_0a87_48d0_8f3b_44144a597477'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('LIBTORCH_HOME', '/home/seoneum/libtorch'), ('DISPLAY', ':1'), ('MUJOCO_GL', 'glfw'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/gdm/Xauthority'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('GNOME_TERMINAL_SERVICE', ':1.98'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('ROS_DOMAIN_ID', '7'), ('AMENT_PREFIX_PATH', '/opt/ros/humble'), ('SHELL', '/bin/bash'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('GPG_AGENT_INFO', '/run/user/1000/gnupg/S.gpg-agent:0:1'), ('QT_IM_MODULE', 'ibus'), ('JAVA_HOME', '/usr/lib/jvm/java-11-openjdk-amd64'), ('PWD', '/home/seoneum/walk_rl/build/walk_rl'), ('LC_ALL', 'en_US.UTF-8'), ('CUDA_HOME', '/usr/local/cuda-11.8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/share/gnome:/home/seoneum/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('VTE_VERSION', '6800')]), 'shell': False}
+[3.858795] (walk_rl) StdoutLine: {'line': b'[ 18%] \x1b[32mBuilding CXX object CMakeFiles/rl_core.dir/src/mj_env.cpp.o\x1b[0m\n'}
+[3.858989] (walk_rl) StdoutLine: {'line': b'[ 18%] \x1b[32mBuilding CXX object CMakeFiles/rl_core.dir/src/ars.cpp.o\x1b[0m\n'}
+[3.859631] (walk_rl) StdoutLine: {'line': b'[ 27%] \x1b[32mBuilding CXX object CMakeFiles/rl_core.dir/src/ppo.cpp.o\x1b[0m\n'}
+[3.859969] (walk_rl) StdoutLine: {'line': b'[ 36%] \x1b[32mBuilding CXX object CMakeFiles/rl_core.dir/src/rl_config.cpp.o\x1b[0m\n'}
+[3.860155] (walk_rl) StdoutLine: {'line': b'[ 45%] \x1b[32mBuilding CXX object CMakeFiles/rl_core.dir/src/elite_buffer.cpp.o\x1b[0m\n'}
+[3.860423] (walk_rl) StdoutLine: {'line': b'[ 54%] \x1b[32mBuilding CXX object CMakeFiles/rl_core.dir/src/gait_ref.cpp.o\x1b[0m\n'}
+[3.909043] (-) TimerEvent: {}
+[4.009390] (-) TimerEvent: {}
+[4.109709] (-) TimerEvent: {}
+[4.210045] (-) TimerEvent: {}
+[4.310378] (-) TimerEvent: {}
+[4.410694] (-) TimerEvent: {}
+[4.511023] (-) TimerEvent: {}
+[4.611362] (-) TimerEvent: {}
+[4.711697] (-) TimerEvent: {}
+[4.812047] (-) TimerEvent: {}
+[4.912382] (-) TimerEvent: {}
+[5.012718] (-) TimerEvent: {}
+[5.113052] (-) TimerEvent: {}
+[5.213377] (-) TimerEvent: {}
+[5.313707] (-) TimerEvent: {}
+[5.414033] (-) TimerEvent: {}
+[5.514376] (-) TimerEvent: {}
+[5.614708] (-) TimerEvent: {}
+[5.715048] (-) TimerEvent: {}
+[5.815376] (-) TimerEvent: {}
+[5.915711] (-) TimerEvent: {}
+[6.016029] (-) TimerEvent: {}
+[6.116364] (-) TimerEvent: {}
+[6.216709] (-) TimerEvent: {}
+[6.317048] (-) TimerEvent: {}
+[6.417384] (-) TimerEvent: {}
+[6.517708] (-) TimerEvent: {}
+[6.618026] (-) TimerEvent: {}
+[6.718351] (-) TimerEvent: {}
+[6.818686] (-) TimerEvent: {}
+[6.918996] (-) TimerEvent: {}
+[7.019313] (-) TimerEvent: {}
+[7.120122] (-) TimerEvent: {}
+[7.220476] (-) TimerEvent: {}
+[7.320807] (-) TimerEvent: {}
+[7.421126] (-) TimerEvent: {}
+[7.521456] (-) TimerEvent: {}
+[7.621808] (-) TimerEvent: {}
+[7.722153] (-) TimerEvent: {}
+[7.822512] (-) TimerEvent: {}
+[7.922878] (-) TimerEvent: {}
+[8.023207] (-) TimerEvent: {}
+[8.123526] (-) TimerEvent: {}
+[8.223870] (-) TimerEvent: {}
+[8.324199] (-) TimerEvent: {}
+[8.424513] (-) TimerEvent: {}
+[8.524848] (-) TimerEvent: {}
+[8.625168] (-) TimerEvent: {}
+[8.725495] (-) TimerEvent: {}
+[8.825831] (-) TimerEvent: {}
+[8.926149] (-) TimerEvent: {}
+[9.026459] (-) TimerEvent: {}
+[9.126744] (-) TimerEvent: {}
+[9.227067] (-) TimerEvent: {}
+[9.327404] (-) TimerEvent: {}
+[9.427732] (-) TimerEvent: {}
+[9.528039] (-) TimerEvent: {}
+[9.628345] (-) TimerEvent: {}
+[9.728659] (-) TimerEvent: {}
+[9.828990] (-) TimerEvent: {}
+[9.929315] (-) TimerEvent: {}
+[10.029638] (-) TimerEvent: {}
+[10.129966] (-) TimerEvent: {}
+[10.230302] (-) TimerEvent: {}
+[10.330633] (-) TimerEvent: {}
+[10.430974] (-) TimerEvent: {}
+[10.531294] (-) TimerEvent: {}
+[10.631607] (-) TimerEvent: {}
+[10.731926] (-) TimerEvent: {}
+[10.832263] (-) TimerEvent: {}
+[10.932596] (-) TimerEvent: {}
+[11.032938] (-) TimerEvent: {}
+[11.133260] (-) TimerEvent: {}
+[11.233600] (-) TimerEvent: {}
+[11.333947] (-) TimerEvent: {}
+[11.434275] (-) TimerEvent: {}
+[11.534603] (-) TimerEvent: {}
+[11.634943] (-) TimerEvent: {}
+[11.735267] (-) TimerEvent: {}
+[11.835604] (-) TimerEvent: {}
+[11.935947] (-) TimerEvent: {}
+[12.036268] (-) TimerEvent: {}
+[12.136598] (-) TimerEvent: {}
+[12.236945] (-) TimerEvent: {}
+[12.337289] (-) TimerEvent: {}
+[12.437618] (-) TimerEvent: {}
+[12.537950] (-) TimerEvent: {}
+[12.638285] (-) TimerEvent: {}
+[12.738619] (-) TimerEvent: {}
+[12.838935] (-) TimerEvent: {}
+[12.939256] (-) TimerEvent: {}
+[13.039583] (-) TimerEvent: {}
+[13.139901] (-) TimerEvent: {}
+[13.240241] (-) TimerEvent: {}
+[13.340593] (-) TimerEvent: {}
+[13.440928] (-) TimerEvent: {}
+[13.541266] (-) TimerEvent: {}
+[13.641622] (-) TimerEvent: {}
+[13.741971] (-) TimerEvent: {}
+[13.842299] (-) TimerEvent: {}
+[13.942617] (-) TimerEvent: {}
+[14.042964] (-) TimerEvent: {}
+[14.143296] (-) TimerEvent: {}
+[14.243618] (-) TimerEvent: {}
+[14.343975] (-) TimerEvent: {}
+[14.444300] (-) TimerEvent: {}
+[14.544624] (-) TimerEvent: {}
+[14.644911] (-) TimerEvent: {}
+[14.745239] (-) TimerEvent: {}
+[14.845587] (-) TimerEvent: {}
+[14.945932] (-) TimerEvent: {}
+[15.046260] (-) TimerEvent: {}
+[15.146592] (-) TimerEvent: {}
+[15.246935] (-) TimerEvent: {}
+[15.347270] (-) TimerEvent: {}
+[15.447574] (-) TimerEvent: {}
+[15.547907] (-) TimerEvent: {}
+[15.648236] (-) TimerEvent: {}
+[15.748563] (-) TimerEvent: {}
+[15.848891] (-) TimerEvent: {}
+[15.949224] (-) TimerEvent: {}
+[16.049547] (-) TimerEvent: {}
+[16.149804] (-) TimerEvent: {}
+[16.250085] (-) TimerEvent: {}
+[16.350369] (-) TimerEvent: {}
+[16.450801] (-) TimerEvent: {}
+[16.551142] (-) TimerEvent: {}
+[16.651550] (-) TimerEvent: {}
+[16.695437] (walk_rl) StdoutLine: {'line': b'[ 63%] \x1b[32m\x1b[1mLinking CXX static library librl_core.a\x1b[0m\n'}
+[16.717613] (walk_rl) StdoutLine: {'line': b'[ 63%] Built target rl_core\n'}
+[16.729901] (walk_rl) StdoutLine: {'line': b'[ 81%] \x1b[32mBuilding CXX object CMakeFiles/train_mjppo.dir/src/train.cpp.o\x1b[0m\n'}
+[16.730033] (walk_rl) StdoutLine: {'line': b'[ 81%] \x1b[32mBuilding CXX object CMakeFiles/quad_viewer.dir/src/viewer.cpp.o\x1b[0m\n'}
+[16.751722] (-) TimerEvent: {}
+[16.851972] (-) TimerEvent: {}
+[16.952230] (-) TimerEvent: {}
+[17.052490] (-) TimerEvent: {}
+[17.152757] (-) TimerEvent: {}
+[17.253022] (-) TimerEvent: {}
+[17.353374] (-) TimerEvent: {}
+[17.453630] (-) TimerEvent: {}
+[17.553889] (-) TimerEvent: {}
+[17.654218] (-) TimerEvent: {}
+[17.754555] (-) TimerEvent: {}
+[17.854838] (-) TimerEvent: {}
+[17.955175] (-) TimerEvent: {}
+[18.055493] (-) TimerEvent: {}
+[18.155716] (-) TimerEvent: {}
+[18.255965] (-) TimerEvent: {}
+[18.356237] (-) TimerEvent: {}
+[18.456499] (-) TimerEvent: {}
+[18.556807] (-) TimerEvent: {}
+[18.657091] (-) TimerEvent: {}
+[18.757329] (-) TimerEvent: {}
+[18.857584] (-) TimerEvent: {}
+[18.957839] (-) TimerEvent: {}
+[19.058162] (-) TimerEvent: {}
+[19.158495] (-) TimerEvent: {}
+[19.258776] (-) TimerEvent: {}
+[19.359087] (-) TimerEvent: {}
+[19.459421] (-) TimerEvent: {}
+[19.559707] (-) TimerEvent: {}
+[19.660214] (-) TimerEvent: {}
+[19.760542] (-) TimerEvent: {}
+[19.860798] (-) TimerEvent: {}
+[19.961140] (-) TimerEvent: {}
+[20.061483] (-) TimerEvent: {}
+[20.161813] (-) TimerEvent: {}
+[20.262074] (-) TimerEvent: {}
+[20.362326] (-) TimerEvent: {}
+[20.462675] (-) TimerEvent: {}
+[20.562928] (-) TimerEvent: {}
+[20.663179] (-) TimerEvent: {}
+[20.763508] (-) TimerEvent: {}
+[20.863741] (-) TimerEvent: {}
+[20.964010] (-) TimerEvent: {}
+[21.064356] (-) TimerEvent: {}
+[21.164617] (-) TimerEvent: {}
+[21.264881] (-) TimerEvent: {}
+[21.365144] (-) TimerEvent: {}
+[21.465490] (-) TimerEvent: {}
+[21.565750] (-) TimerEvent: {}
+[21.665992] (-) TimerEvent: {}
+[21.766327] (-) TimerEvent: {}
+[21.866652] (-) TimerEvent: {}
+[21.966903] (-) TimerEvent: {}
+[22.067227] (-) TimerEvent: {}
+[22.167505] (-) TimerEvent: {}
+[22.267828] (-) TimerEvent: {}
+[22.368089] (-) TimerEvent: {}
+[22.468362] (-) TimerEvent: {}
+[22.568617] (-) TimerEvent: {}
+[22.668863] (-) TimerEvent: {}
+[22.769119] (-) TimerEvent: {}
+[22.869447] (-) TimerEvent: {}
+[22.969782] (-) TimerEvent: {}
+[23.070039] (-) TimerEvent: {}
+[23.170269] (-) TimerEvent: {}
+[23.270582] (-) TimerEvent: {}
+[23.370831] (-) TimerEvent: {}
+[23.471167] (-) TimerEvent: {}
+[23.571424] (-) TimerEvent: {}
+[23.671681] (-) TimerEvent: {}
+[23.771923] (-) TimerEvent: {}
+[23.872197] (-) TimerEvent: {}
+[23.972457] (-) TimerEvent: {}
+[24.072736] (-) TimerEvent: {}
+[24.173021] (-) TimerEvent: {}
+[24.273343] (-) TimerEvent: {}
+[24.373701] (-) TimerEvent: {}
+[24.473947] (-) TimerEvent: {}
+[24.574204] (-) TimerEvent: {}
+[24.674464] (-) TimerEvent: {}
+[24.774717] (-) TimerEvent: {}
+[24.874992] (-) TimerEvent: {}
+[24.975252] (-) TimerEvent: {}
+[25.075575] (-) TimerEvent: {}
+[25.175927] (-) TimerEvent: {}
+[25.276274] (-) TimerEvent: {}
+[25.376592] (-) TimerEvent: {}
+[25.476850] (-) TimerEvent: {}
+[25.577111] (-) TimerEvent: {}
+[25.677450] (-) TimerEvent: {}
+[25.777711] (-) TimerEvent: {}
+[25.877942] (-) TimerEvent: {}
+[25.978195] (-) TimerEvent: {}
+[26.078455] (-) TimerEvent: {}
+[26.178771] (-) TimerEvent: {}
+[26.279072] (-) TimerEvent: {}
+[26.379328] (-) TimerEvent: {}
+[26.479580] (-) TimerEvent: {}
+[26.579825] (-) TimerEvent: {}
+[26.680167] (-) TimerEvent: {}
+[26.780496] (-) TimerEvent: {}
+[26.880774] (-) TimerEvent: {}
+[26.981027] (-) TimerEvent: {}
+[27.081372] (-) TimerEvent: {}
+[27.181640] (-) TimerEvent: {}
+[27.281883] (-) TimerEvent: {}
+[27.382133] (-) TimerEvent: {}
+[27.482402] (-) TimerEvent: {}
+[27.515461] (walk_rl) StdoutLine: {'line': b'[ 90%] \x1b[32m\x1b[1mLinking CXX executable train_mjppo\x1b[0m\n'}
+[27.582508] (-) TimerEvent: {}
+[27.682847] (-) TimerEvent: {}
+[27.783142] (-) TimerEvent: {}
+[27.883508] (-) TimerEvent: {}
+[27.983836] (-) TimerEvent: {}
+[28.082137] (walk_rl) StdoutLine: {'line': b'[ 90%] Built target train_mjppo\n'}
+[28.083891] (-) TimerEvent: {}
+[28.131825] (walk_rl) StdoutLine: {'line': b'[100%] \x1b[32m\x1b[1mLinking CXX executable quad_viewer\x1b[0m\n'}
+[28.184094] (-) TimerEvent: {}
+[28.284448] (-) TimerEvent: {}
+[28.384810] (-) TimerEvent: {}
+[28.485150] (-) TimerEvent: {}
+[28.585488] (-) TimerEvent: {}
+[28.660645] (walk_rl) StdoutLine: {'line': b'[100%] Built target quad_viewer\n'}
+[28.667862] (walk_rl) CommandEnded: {'returncode': 0}
+[28.672629] (walk_rl) JobEnded: {'identifier': 'walk_rl', 'rc': 0}
+[28.672961] (-) EventReactorShutdown: {}

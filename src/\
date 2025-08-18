@@ -1,0 +1,279 @@
+#include "mj_env.hpp"
+#include <cmath>
+#include <cstring>
+#include <algorithm>
+#include <iostream>
+
+static inline double clamp(double x, double lo, double hi) {
+  return std::max(lo, std::min(hi, x));
+}
+
+MjEnv::MjEnv(const EnvConfig &cfg) : cfg_(cfg), rng_(cfg.seed) {
+  char error[1024] = {0};
+  m_ = mj_loadXML(cfg_.xml_path.c_str(), nullptr, error, sizeof(error));
+  if (!m_) {
+    std::cerr << "MuJoCo load error: " << error << std::endl;
+    throw std::runtime_error("loadXML");
+  }
+  d_ = mj_makeData(m_);
+  if (!d_)
+    throw std::runtime_error("makeData");
+  build_mappings_();
+  find_feet_();
+
+  act_dim_ = (int)act_jnt_ids_.size();
+  obs_dim_ =
+      2 + 1 + 2 + act_dim_ + act_dim_ + act_dim_ + (int)foot_geom_ids_.size();
+  prev_action_ = torch::zeros({act_dim_}, torch::kFloat32);
+  max_steps_per_ep_ = (int)std::round(cfg_.max_episode_sec /
+                                      (m_->opt.timestep * cfg_.frame_skip));
+
+  mj_resetData(m_, d_);
+  mj_forward(m_, d_);
+  randomize_physics_();
+}
+
+MjEnv::~MjEnv() {
+  if (d_)
+    mj_deleteData(d_);
+  if (m_)
+    mj_deleteModel(m_);
+}
+
+void MjEnv::build_mappings_() {
+  int nu = m_->nu;
+  act_jnt_ids_.resize(nu);
+  act_jnt_qposadr_.resize(nu);
+  act_jnt_qveladr_.resize(nu);
+  for (int i = 0; i < nu; ++i) {
+    int j = m_->actuator_trnid[2 * i];
+    act_jnt_ids_[i] = j;
+    act_jnt_qposadr_[i] = m_->jnt_qposadr[j];
+    act_jnt_qveladr_[i] = m_->jnt_dofadr[j];
+  }
+}
+
+void MjEnv::find_feet_() {
+  for (auto &n : cfg_.foot_geom_names) {
+    int id = mj_name2id(m_, mjOBJ_GEOM, n.c_str());
+    if (id >= 0)
+      foot_geom_ids_.push_back(id);
+  }
+  if (foot_geom_ids_.empty())
+    std::cerr << "[WARN] No foot geoms found.\n";
+}
+
+void MjEnv::randomize_physics_() {
+  double mass_scale = 1.0 + cfg_.mass_noise * (2.0 * uni01_(rng_) - 1.0);
+  for (int i = 0; i < m_->nbody; ++i) {
+    if (i == 0)
+      continue;
+    m_->body_mass[i] *= mass_scale;
+    m_->body_inertia[3 * i + 0] *= mass_scale;
+    m_->body_inertia[3 * i + 1] *= mass_scale;
+    m_->body_inertia[3 * i + 2] *= mass_scale;
+  }
+  double damp_scale =
+      cfg_.joint_damping_scale_min +
+      (cfg_.joint_damping_scale_max - cfg_.joint_damping_scale_min) *
+          uni01_(rng_);
+  for (int i = 0; i < m_->nv; ++i)
+    m_->dof_damping[i] *= damp_scale;
+
+  for (int i = 0; i < m_->ngeom; ++i) {
+    double mu = cfg_.friction_min +
+                (cfg_.friction_max - cfg_.friction_min) * uni01_(rng_);
+    m_->geom_friction[3 * i + 0] = mu;
+    m_->geom_friction[3 * i + 1] = 0.005;
+    m_->geom_friction[3 * i + 2] = 0.0001;
+  }
+}
+
+void MjEnv::randomize_state_() {
+  mj_resetData(m_, d_);
+  for (int i = 0; i < m_->nq; ++i)
+    d_->qpos[i] += 0.005;
+  d_->qpos[2] = cfg_.init_height;
+  for (int i = 0; i < m_->nv; ++i)
+    d_->qvel[i] += 0.01;
+  mj_forward(m_, d_);
+  prev_action_.zero_();
+  sim_time_ = 0.0;
+  step_count_ = 0;
+}
+
+torch::Tensor MjEnv::reset() {
+  randomize_state_();
+  return build_obs_();
+}
+
+void MjEnv::quat_to_rpy_(const double *q, double &roll, double &pitch,
+                         double &yaw) const {
+  double w = q[0], x = q[1], y = q[2], z = q[3];
+  double sinr = 2.0 * (w * x + y * z), cosr = 1.0 - 2.0 * (x * x + y * y);
+  roll = std::atan2(sinr, cosr);
+  double sinp = 2.0 * (w * y - z * x);
+  pitch =
+      std::abs(sinp) >= 1 ? std::copysign(M_PI / 2.0, sinp) : std::asin(sinp);
+  double siny = 2.0 * (w * z + x * y), cosy = 1.0 - 2.0 * (y * y + z * z);
+  yaw = std::atan2(siny, cosy);
+}
+
+torch::Tensor MjEnv::build_obs_() {
+  const double *q = &d_->qpos[3];
+  double roll, pitch, yaw;
+  quat_to_rpy_(q, roll, pitch, yaw);
+  double R[9];
+  mju_quat2Mat(R, q);
+  double v_world[3] = {d_->qvel[0], d_->qvel[1], d_->qvel[2]};
+  double v_body[3] = {R[0] * v_world[0] + R[3] * v_world[1] + R[6] * v_world[2],
+                      R[1] * v_world[0] + R[4] * v_world[1] + R[7] * v_world[2],
+                      R[2] * v_world[0] + R[5] * v_world[1] +
+                          R[8] * v_world[2]};
+  double yaw_rate = d_->qvel[5];
+
+  std::vector<float> o;
+  o.reserve(obs_dim_);
+  o.push_back((float)roll);
+  o.push_back((float)pitch);
+  o.push_back((float)(yaw_rate + cfg_.sensor_gyro_noise_std * n01_(rng_)));
+  o.push_back((float)(v_body[0] + cfg_.sensor_linvel_noise_std * n01_(rng_)));
+  o.push_back((float)(v_body[1] + cfg_.sensor_linvel_noise_std * n01_(rng_)));
+
+  for (int i = 0; i < act_dim_; ++i)
+    o.push_back((float)d_->qpos[act_jnt_qposadr_[i]]);
+  for (int i = 0; i < act_dim_; ++i)
+    o.push_back((float)d_->qvel[act_jnt_qveladr_[i]]);
+  for (int i = 0; i < act_dim_; ++i)
+    o.push_back(prev_action_[i].item<float>());
+
+  std::vector<char> footc(foot_geom_ids_.size(), 0);
+  for (int c = 0; c < d_->ncon; ++c) {
+    auto &con = d_->contact[c];
+    for (size_t k = 0; k < foot_geom_ids_.size(); ++k)
+      if (con.geom1 == foot_geom_ids_[k] || con.geom2 == foot_geom_ids_[k]) {
+        footc[k] = 1;
+        break;
+      }
+  }
+  for (auto fc : footc)
+    o.push_back((float)fc);
+  return torch::from_blob(o.data(), {(int)o.size()}, torch::kFloat32).clone();
+}
+
+void MjEnv::apply_action_position_servo_(const torch::Tensor &act) {
+  auto a = act.to(torch::kCPU).contiguous();
+  const float *p = a.data_ptr<float>();
+  for (int i = 0; i < act_dim_; ++i) {
+    int qp = act_jnt_qposadr_[i];
+    double q = d_->qpos[qp];
+    double target = q + cfg_.action_scale * (double)p[i];
+    int j = act_jnt_ids_[i];
+    if (m_->jnt_limited[j]) {
+      double lo = m_->jnt_range[2 * j], hi = m_->jnt_range[2 * j + 1];
+      target = clamp(target, lo, hi);
+    }
+    d_->ctrl[i] = target;
+  }
+}
+
+bool MjEnv::is_fallen_() const {
+  double r, p, y;
+  quat_to_rpy_(&d_->qpos[3], r, p, y);
+  if (std::abs(r) > 0.8 || std::abs(p) > 0.8)
+    return true;
+  if (d_->qpos[2] < 0.12)
+    return true;
+  return false;
+}
+
+double MjEnv::compute_reward_and_check_done_(bool &done_flag) {
+
+  done_flag = false;
+
+  // body frame vx
+  double R[9];
+  mju_quat2Mat(R, &d_->qpos[3]);
+  double v_world[3] = {d_->qvel[0], d_->qvel[1], d_->qvel[2]};
+  double vbx = R[0] * v_world[0] + R[3] * v_world[1] + R[6] * v_world[2];
+
+  // speed tracking
+  double vel_err = (vbx - cfg_.target_vx);
+  double r_speed = cfg_.w_speed * std::exp(-(vel_err * vel_err) / 0.04);
+
+  // posture (roll/pitch)
+  double roll, pitch, yaw;
+  quat_to_rpy_(&d_->qpos[3], roll, pitch, yaw);
+  double r_posture = -cfg_.w_posture * (roll * roll + pitch * pitch);
+
+  // yaw drift
+  double r_yaw = -cfg_.w_yaw * std::abs(yaw);
+
+  // action L2
+  double a2 = prev_action_.pow(2).mean().item<double>();
+  double r_action = -cfg_.w_action * last_action_rate2_;
+
+  // foot slip
+  double r_slip = 0.0;
+  if (cfg_.use_contact_slip_penalty && !foot_geom_ids_.empty()) {
+    for (int gid : foot_geom_ids_) {
+      bool in_contact = false;
+      for (int c = 0; c < d_->ncon; ++c) {
+        const mjContact &con = d_->contact[c];
+        if (con.geom1 == gid || con.geom2 == gid) {
+          in_contact = true;
+          break;
+        }
+      }
+      if (in_contact) {
+        double res[6] = {0};
+        mj_objectVelocity(m_, d_, mjOBJ_GEOM, gid, res, 0);
+        double vxy = std::sqrt(res[3] * res[3] + res[4] * res[4]);
+        r_slip -= cfg_.w_slip * vxy;
+      }
+    }
+  }
+
+  // angular velocity penalty (roll/pitch rates)
+  double r_angvel =
+      -cfg_.w_angvel * (d_->qvel[3] * d_->qvel[3] + d_->qvel[4] * d_->qvel[4]);
+
+  // action rate penalty
+  double r_actrate = -cfg_.w_act_rate * last_action_rate2_;
+
+  // alive bonus
+  double r_alive = cfg_.w_alive;
+
+  double reward = r_speed + r_posture + r_yaw + r_action + r_slip + r_angvel +
+                  r_actrate + r_alive;
+
+  if (is_fallen_() || step_count_ >= max_steps_per_ep_)
+    done_flag = true;
+
+  return reward;
+}
+
+StepResult MjEnv::step(const torch::Tensor &action) {
+  torch::Tensor a =
+      cfg_.use_clip_actions ? torch::clamp(action, -1.0, 1.0) : action;
+
+  auto delta = (a - prev_action_).to(torch::kFloat32);
+  last_action_rate2_ = delta.pow(2).mean().item<double>();
+
+  apply_action_position_servo_(a);
+  prev_action_ = a.detach().clone(); // prev_action_ 갱신은 적용 후에
+
+  int fs = std::max(1, cfg_.frame_skip);
+  for (int i = 0; i < fs; ++i)
+    mj_step(m_, d_);
+  sim_time_ += m_->opt.timestep * fs;
+  step_count_++;
+
+  bool done = false;
+  double r = compute_reward_and_check_done_(done);
+  auto o = build_obs_();
+  if (done)
+    o = reset();
+
+  return {o, r, done};
+}

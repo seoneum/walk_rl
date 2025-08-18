@@ -1,0 +1,2 @@
+/usr/bin/ar qc librl_core.a CMakeFiles/rl_core.dir/src/mj_env.cpp.o CMakeFiles/rl_core.dir/src/ppo.cpp.o CMakeFiles/rl_core.dir/src/ars.cpp.o CMakeFiles/rl_core.dir/src/rl_config.cpp.o CMakeFiles/rl_core.dir/src/elite_buffer.cpp.o CMakeFiles/rl_core.dir/src/gait_ref.cpp.o
+/usr/bin/ranlib librl_core.a

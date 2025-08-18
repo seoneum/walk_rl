@@ -1,0 +1,76 @@
+[0.006s] Invoking command in '/home/seoneum/walk_rl/build/walk_rl': /usr/bin/cmake /home/seoneum/walk_rl -DCMAKE_INSTALL_PREFIX=/home/seoneum/walk_rl/install/walk_rl
+[0.077s] -- The C compiler identification is GNU 11.4.0
+[0.111s] -- The CXX compiler identification is GNU 11.4.0
+[0.115s] -- Detecting C compiler ABI info
+[0.159s] -- Detecting C compiler ABI info - done
+[0.163s] -- Check for working C compiler: /usr/bin/cc - skipped
+[0.163s] -- Detecting C compile features
+[0.163s] -- Detecting C compile features - done
+[0.165s] -- Detecting CXX compiler ABI info
+[0.214s] -- Detecting CXX compiler ABI info - done
+[0.218s] -- Check for working CXX compiler: /usr/bin/c++ - skipped
+[0.218s] -- Detecting CXX compile features
+[0.219s] -- Detecting CXX compile features - done
+[0.233s] -- Found CUDA: /usr/local/cuda-11.8 (found version "11.8") 
+[0.816s] -- The CUDA compiler identification is NVIDIA 11.8.89
+[0.820s] -- Detecting CUDA compiler ABI info
+[1.385s] -- Detecting CUDA compiler ABI info - done
+[1.401s] -- Check for working CUDA compiler: /usr/local/cuda-11.8/bin/nvcc - skipped
+[1.402s] -- Detecting CUDA compile features
+[1.402s] -- Detecting CUDA compile features - done
+[1.403s] -- Found CUDAToolkit: /usr/local/cuda-11.8/include (found version "11.8.89") 
+[1.406s] -- Looking for pthread.h
+[1.452s] -- Looking for pthread.h - found
+[1.452s] -- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+[1.497s] -- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+[1.497s] -- Found Threads: TRUE  
+[1.511s] -- Caffe2: CUDA detected: 11.8
+[1.511s] -- Caffe2: CUDA nvcc is: /usr/local/cuda-11.8/bin/nvcc
+[1.511s] -- Caffe2: CUDA toolkit directory: /usr/local/cuda-11.8
+[1.574s] -- Caffe2: Header version is: 11.8
+[1.577s] [33mCMake Warning at /home/seoneum/libtorch/share/cmake/Caffe2/public/cuda.cmake:185 (message):
+[1.577s]   Failed to compute shorthash for libnvrtc.so
+[1.577s] Call Stack (most recent call first):
+[1.577s]   /home/seoneum/libtorch/share/cmake/Caffe2/Caffe2Config.cmake:87 (include)
+[1.577s]   /home/seoneum/libtorch/share/cmake/Torch/TorchConfig.cmake:68 (find_package)
+[1.577s]   CMakeLists.txt:29 (find_package)
+[1.577s] 
+[1.577s] [0m
+[1.577s] -- USE_CUDNN is set to 0. Compiling without cuDNN support
+[1.577s] -- USE_CUSPARSELT is set to 0. Compiling without cuSPARSELt support
+[3.588s] -- Autodetected CUDA architecture(s):  8.6
+[3.589s] -- Added CUDA NVCC flags for: -gencode;arch=compute_86,code=sm_86
+[3.604s] -- Found Torch: /home/seoneum/libtorch/lib/libtorch.so  
+[3.604s] -- Found LibTorch at: /home/seoneum/libtorch/share/cmake/Torch
+[3.604s] -- Target Torch::Torch not found, creating compatibility target.
+[3.608s] -- Using MuJoCo (package): mujoco::mujoco
+[3.813s] -- OpenMP enabled
+[3.814s] -- Found GLFW3
+[3.814s] -- ==================================================
+[3.814s] -- Build type:        Release
+[3.814s] -- LibTorch:          /home/seoneum/libtorch/share/cmake/Torch
+[3.815s] -- MuJoCo:            package
+[3.815s] -- OpenMP:            Enabled
+[3.815s] -- Build ROS2 node:   OFF
+[3.815s] -- Build viewer:      ON
+[3.815s] -- ==================================================
+[3.815s] -- Configuring done
+[3.821s] -- Generating done
+[3.822s] -- Build files have been written to: /home/seoneum/walk_rl/build/walk_rl
+[3.827s] Invoked command in '/home/seoneum/walk_rl/build/walk_rl' returned '0': /usr/bin/cmake /home/seoneum/walk_rl -DCMAKE_INSTALL_PREFIX=/home/seoneum/walk_rl/install/walk_rl
+[3.829s] Invoking command in '/home/seoneum/walk_rl/build/walk_rl': /usr/bin/cmake --build /home/seoneum/walk_rl/build/walk_rl -- -j8 -l8
+[3.859s] [ 18%] [32mBuilding CXX object CMakeFiles/rl_core.dir/src/mj_env.cpp.o[0m
+[3.859s] [ 18%] [32mBuilding CXX object CMakeFiles/rl_core.dir/src/ars.cpp.o[0m
+[3.859s] [ 27%] [32mBuilding CXX object CMakeFiles/rl_core.dir/src/ppo.cpp.o[0m
+[3.860s] [ 36%] [32mBuilding CXX object CMakeFiles/rl_core.dir/src/rl_config.cpp.o[0m
+[3.860s] [ 45%] [32mBuilding CXX object CMakeFiles/rl_core.dir/src/elite_buffer.cpp.o[0m
+[3.860s] [ 54%] [32mBuilding CXX object CMakeFiles/rl_core.dir/src/gait_ref.cpp.o[0m
+[16.695s] [ 63%] [32m[1mLinking CXX static library librl_core.a[0m
+[16.717s] [ 63%] Built target rl_core
+[16.730s] [ 81%] [32mBuilding CXX object CMakeFiles/train_mjppo.dir/src/train.cpp.o[0m
+[16.730s] [ 81%] [32mBuilding CXX object CMakeFiles/quad_viewer.dir/src/viewer.cpp.o[0m
+[27.515s] [ 90%] [32m[1mLinking CXX executable train_mjppo[0m
+[28.082s] [ 90%] Built target train_mjppo
+[28.132s] [100%] [32m[1mLinking CXX executable quad_viewer[0m
+[28.660s] [100%] Built target quad_viewer
+[28.668s] Invoked command in '/home/seoneum/walk_rl/build/walk_rl' returned '0': /usr/bin/cmake --build /home/seoneum/walk_rl/build/walk_rl -- -j8 -l8

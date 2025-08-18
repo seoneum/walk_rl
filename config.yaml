@@ -1,0 +1,74 @@
+env:
+  xml_path: models/quadruped.xml
+  foot_geoms: [foot_fl, foot_fr, foot_rl, foot_rr]
+
+  action_scale: 0.30
+  frame_skip: 10
+  init_height: 0.28
+  max_episode_sec: 60.0
+
+  # 고정 속도(초기엔 약간 낮게)
+  target_vx: 0.3
+  include_cmd: true
+  sample_cmd_per_reset: false
+  cmd_vx_min: 0.3
+  cmd_vx_max: 0.3
+
+  # 도메인 랜덤화(좁게)
+  mass_noise: 0.05
+  friction_min: 0.9
+  friction_max: 1.05
+  joint_damping_scale_min: 0.95
+  joint_damping_scale_max: 1.05
+  sensor_gyro_noise_std: 0.01
+  sensor_linvel_noise_std: 0.02
+
+  use_contact_slip_penalty: true
+  use_clip_actions: true
+  seed: 1234
+
+  # 다리/보행 기하(안정 범위)
+  leg_L1: 0.10
+  leg_L2: 0.10
+  step_L_span: 0.06
+  step_base_h: 0.12
+  step_clearance: 0.02
+
+  # 참조만 먼저 확인
+  use_bezier_ref: true
+  use_residual: false
+
+  # 보상 가중치
+  w_speed: 2.0
+  w_posture: 0.2
+  w_yaw: 0.05
+  w_action: 0.001
+  w_slip: 0.02
+  w_alive: 0.05
+  w_angvel: 0.01
+  w_act_rate: 0.005
+
+train:
+  num_envs: 16
+  total_updates: 100
+  algo: PPO
+  tag: mj_ref_only # <--- 단계별 결과 분리를 위해 태그 변경 추천
+  curriculum: false
+
+ppo:
+  lr: 2.0e-4
+  clip_range: 0.10
+  vf_coef: 0.5
+  ent_coef: 0.0003
+  hidden: 128
+  rollout_horizon: 512
+  num_epochs: 5
+  minibatch_size: 1024
+  use_cuda: true
+
+  # 안정화 옵션
+  target_kl: 0.03
+  bc_coef: 0.0          # ← 잔차가 꺼져 있으므로 BC는 꺼두기(중요)
+  bc_batch: 512
+  init_ckpt: ""
+  resume_optimizer: false

@@ -1,0 +1,78 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"jsonFile" : "directory-.-Release-f5ebdc15457944623624.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"name" : "Release",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "walk_rl",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "quad_viewer::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-quad_viewer-Release-555e68b2b3d5f7369da6.json",
+					"name" : "quad_viewer",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "rl_core::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-rl_core-Release-bdab3d34f0f0e1691efd.json",
+					"name" : "rl_core",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "train_mjppo::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-train_mjppo-Release-40b24e559716aaa4e090.json",
+					"name" : "train_mjppo",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/home/seoneum/walk_rl/build/walk_rl",
+		"source" : "/home/seoneum/walk_rl"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 3
+	}
+}
