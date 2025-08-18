@@ -54,13 +54,16 @@ std::pair<bool, double> TrotPlanner::phase(double time, int leg) const {
 }
 
 bool IK2Link::solve(double x, double z, double &hip, double &knee) const {
+  // MuJoCo 좌표계: z는 아래(-) 방향이 다리 신전
+  z = -std::abs(z);  // 항상 음수로 (아래로)
+  
   double r2 = x * x + z * z;
   if (r2 < 1e-9)
     r2 = 1e-9;
   double cK = clampd((L1 * L1 + L2 * L2 - r2) / (2 * L1 * L2), -1.0, 1.0);
-  knee = M_PI - std::acos(cK);
+  knee = -(M_PI - std::acos(cK));  // 무릎은 음수 각도
   double phi = std::atan2(z, x);
-  double sK = std::sin(knee), cK2 = std::cos(knee);
+  double sK = std::sin(-knee), cK2 = std::cos(-knee);
   double beta = std::atan2(L2 * sK, L1 + L2 * cK2);
   hip = phi - beta;
   return std::isfinite(hip) && std::isfinite(knee);
@@ -94,7 +97,7 @@ void LocomotionRef::build_qref(std::vector<double> &qref,
     auto st = gait.phase(t, leg_id);
     bool swing = st.first;
     double s = std::min(1.0, std::max(0.0, st.second));
-    double x = 0.0, z_up = base_h; // up(+)
+    double x = 0.0, z_up = base_h; // up(+) in reference frame
     if (swing) {
       auto p = swing_curve.sample(s);
       x = p[0];
@@ -103,6 +106,7 @@ void LocomotionRef::build_qref(std::vector<double> &qref,
       x = +L_span - 2.0 * L_span * s;
       z_up = base_h;
     }
+    // IK solve expects z_up as positive (will be converted internally)
     clampReach(x, z_up, ik.L1, ik.L2);
     double hip = 0.0, knee = 0.0;
     if (ik.solve(x, z_up, hip, knee)) {

@@ -37,38 +37,38 @@
       <geom name="torso" pos="0 0 0" size="0.5 0.15 0.05" type="box"/>
       <joint armature="0" damping="0" limited="false" name="root" pos="0 0 0" type="free"/>
       <body name="front_left_leg" pos="0.45 0.15 0">
-        <joint axis="1 0 0" name="hip_front_left" pos="0.0 0.0 0.0" range="0 0.5" type="hinge" ref = "0"/>
+        <joint axis="1 0 0" name="hip_front_left" pos="0.0 0.0 0.0" range="-0.5 0.5" type="hinge" ref = "0"/>
         <geom fromto="0.0 0.0 0.0 0.0 0.0 -0.3" name="front_left_leg" size="0.05" type="capsule"/>
         <body pos="0 0 -0.3">
-          <joint axis="0 1 0" name="knee_front_left" pos="0.0 0.0 0.0" range="0 2" type="hinge" ref = "0"/>
+          <joint axis="0 1 0" name="knee_front_left" pos="0.0 0.0 0.0" range="-2.0 0" type="hinge" ref = "0"/>
           <geom fromto="0.0 0.0 0.0 0.0 0.0 -0.3" name="front_left_shin" size="0.05" type="capsule"/>
           <geom name="foot_fl" type="sphere" size="0.04" pos="0 0 0"/>
         </body>
       </body>
       <body name="front_right_leg" pos="0.45 -0.15 0">
-        <joint axis="1 0 0" name="hip_front_right" pos="0.0 0.0 0.0" range="0 0.5" type="hinge" ref = "0"/>
+        <joint axis="1 0 0" name="hip_front_right" pos="0.0 0.0 0.0" range="-0.5 0.5" type="hinge" ref = "0"/>
         <geom fromto="0.0 0.0 0.0 0.0 0.0 -0.3" name="front_right_leg" size="0.05" type="capsule"/>
         <body pos="0 0 -0.3">
-          <joint axis="0 1 0" name="knee_front_right" pos="0.0 0.0 0.0" range="0 2" type="hinge"/>
+          <joint axis="0 1 0" name="knee_front_right" pos="0.0 0.0 0.0" range="-2.0 0" type="hinge" ref = "0"/>
           <geom fromto="0.0 0.0 0.0 0.0 0.0 -0.3" name="front_right_shin" size="0.05" type="capsule"/>
 
           <geom name="foot_fr" type="sphere" size="0.04" pos="0 0 0"/>
         </body>
       </body>
       <body name="back_left_leg" pos="-0.45 0.15 0">
-        <joint axis="1 0 0" name="hip_back_left" pos="0.0 0.0 0.0" range="0 0.5" type="hinge" ref = "0"/>
+        <joint axis="1 0 0" name="hip_back_left" pos="0.0 0.0 0.0" range="-0.5 0.5" type="hinge" ref = "0"/>
         <geom fromto="0.0 0.0 0.0 0.0 0.0 -0.3" name="back_left_leg" size="0.05" type="capsule"/>
         <body pos="0 0 -0.3">
-          <joint axis="0 1 0" name="knee_back_left" pos="0.0 0.0 0.0" range="0 2" type="hinge" ref = "0"/>
+          <joint axis="0 1 0" name="knee_back_left" pos="0.0 0.0 0.0" range="-2.0 0" type="hinge" ref = "0"/>
           <geom fromto="0.0 0.0 0.0 0.0 0.0 -0.3" name="back_left_shin" size="0.05" type="capsule"/>
           <geom name="foot_rl" type="sphere" size="0.04" pos="0 0 0"/>
         </body>
       </body>
       <body name="back_right_leg" pos="-0.45 -0.15 0">
-        <joint axis="1 0 0" name="hip_back_right" pos="0.0 0.0 0.0" range="0 0.5" type="hinge" ref = "0"/>
+        <joint axis="1 0 0" name="hip_back_right" pos="0.0 0.0 0.0" range="-0.5 0.5" type="hinge" ref = "0"/>
         <geom fromto="0.0 0.0 0.0 0.0 0.0 -0.3" name="back_right_leg" size="0.05" type="capsule"/>
         <body pos="0 0 -0.3">
-          <joint axis="0 1 0" name="knee_back_right" pos="0.0 0.0 0.0" range="0 2" type="hinge" ref = "0"/>
+          <joint axis="0 1 0" name="knee_back_right" pos="0.0 0.0 0.0" range="-2.0 0" type="hinge" ref = "0"/>
           <geom fromto="0.0 0.0 0.0 0.0 0.0 -0.3" name="back_right_shin" size="0.05" type="capsule"/>
           <geom name="foot_rr" type="sphere" size="0.04" pos="0 0 0"/>
         </body>
@@ -76,13 +76,13 @@
     </body>
   </worldbody>
   <actuator>
-    <motor ctrllimited="true" ctrlrange="0 2.0" gear="15" joint="hip_front_left" name="hip_front_left"/>
-    <motor ctrllimited="true" ctrlrange="0 2.0" gear="15" joint="knee_front_left" name="knee_front_left"/>
-    <motor ctrllimited="true" ctrlrange="0 2.0" gear="15" joint="hip_front_right" name="hip_front_right"/>
-    <motor ctrllimited="true" ctrlrange="0 2.0" gear="15" joint="knee_front_right" name="knee_front_right"/>
-    <motor ctrllimited="true" ctrlrange="0 2.0" gear="15" joint="hip_back_left" name="hip_back_left"/>
-    <motor ctrllimited="true" ctrlrange="0 2.0" gear="15" joint="knee_back_left" name="knee_back_left"/>
-    <motor ctrllimited="true" ctrlrange="0 2.0" gear="15" joint="hip_back_right" name="hip_back_right"/>
-    <motor ctrllimited="true" ctrlrange="0 2.0" gear="15" joint="knee_back_right" name="knee_back_right"/>
+    <motor ctrllimited="true" ctrlrange="-1.5 1.5" gear="10" joint="hip_front_left" name="hip_front_left"/>
+    <motor ctrllimited="true" ctrlrange="-2.0 0.5" gear="10" joint="knee_front_left" name="knee_front_left"/>
+    <motor ctrllimited="true" ctrlrange="-1.5 1.5" gear="10" joint="hip_front_right" name="hip_front_right"/>
+    <motor ctrllimited="true" ctrlrange="-2.0 0.5" gear="10" joint="knee_front_right" name="knee_front_right"/>
+    <motor ctrllimited="true" ctrlrange="-1.5 1.5" gear="10" joint="hip_back_left" name="hip_back_left"/>
+    <motor ctrllimited="true" ctrlrange="-2.0 0.5" gear="10" joint="knee_back_left" name="knee_back_left"/>
+    <motor ctrllimited="true" ctrlrange="-1.5 1.5" gear="10" joint="hip_back_right" name="hip_back_right"/>
+    <motor ctrllimited="true" ctrlrange="-2.0 0.5" gear="10" joint="knee_back_right" name="knee_back_right"/>
   </actuator>
 </mujoco>
