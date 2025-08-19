@@ -2,17 +2,17 @@ env:
   xml_path: models/quadruped.xml
   foot_geoms: [foot_fl, foot_fr, foot_rl, foot_rr]
 
-  action_scale: 0.20  # 더 부드러운 제어
+  action_scale: 0.10  # 매우 부드러운 제어
   frame_skip: 10
-  init_height: 0.25  # 더 낮은 초기 높이
+  init_height: 0.15  # 매우 낮은 초기 높이
   max_episode_sec: 60.0
 
   # 고정 속도(초기엔 약간 낮게)
-  target_vx: 0.2  # 더 낮은 초기 속도
+  target_vx: 0.1  # 매우 낮은 초기 속도
   include_cmd: true
   sample_cmd_per_reset: false
-  cmd_vx_min: 0.2
-  cmd_vx_max: 0.2
+  cmd_vx_min: 0.1
+  cmd_vx_max: 0.1
 
   # 도메인 랜덤화(좁게)
   mass_noise: 0.05
@@ -31,8 +31,8 @@ env:
   leg_L1: 0.30  # 실제 다리 길이에 맞춤
   leg_L2: 0.30
   step_L_span: 0.08  # 약간 더 넓은 보폭
-  step_base_h: 0.20  # 더 높은 기본 발 위치
-  step_clearance: 0.03  # 약간 더 높은 발 들기
+  step_base_h: 0.15  # 낮은 기본 발 위치
+  step_clearance: 0.02  # 낮은 발 들기
 
   # 참조만 먼저 확인
   use_bezier_ref: true

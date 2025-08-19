@@ -239,6 +239,11 @@ void MjEnv::randomize_state_() {
   d_->qpos[0] = 0.0;
   d_->qpos[1] = 0.0;
   d_->qpos[2] = cfg_.init_height;
+  
+  // 초기 속도를 0으로 설정 (날아가지 않도록)
+  for(int i = 0; i < m_->nv; ++i) {
+    d_->qvel[i] = 0.0;
+  }
   d_->qpos[3] = 1.0;
   d_->qpos[4] = 0.0;
   d_->qpos[5] = 0.0;
@@ -254,14 +259,14 @@ void MjEnv::randomize_state_() {
       if (s.find("hip") != std::string::npos)
         off = 0.0;  // 중립 위치
       if (s.find("knee") != std::string::npos)
-        off = -0.4; // 적당히 굽힌 자세
+        off = -0.3; // 약간만 굽힌 자세
     }
     d_->qpos[qp] = off;
   }
 
   mj_forward(m_, d_);
-  // 발끝이 바닥 아래면 들어올리기(1cm 여유)
-  lift_body_clearance_(0.01);
+  // 발끝이 바닥 아래면 들어올리기(2cm 여유)
+  lift_body_clearance_(0.02);
   // 초기 정착
   settle_(50);  // 더 긴 정착 시간
 
@@ -373,7 +378,7 @@ bool MjEnv::is_fallen_() const {
   quat_to_rpy_(&d_->qpos[3], r, p, y);
   if (std::abs(r) > 0.6 || std::abs(p) > 0.6)  // 더 엄격한 기준
     return true;
-  if (d_->qpos[2] < 0.10)  // 더 낮은 최소 높이
+  if (d_->qpos[2] < 0.08)  // 매우 낮은 최소 높이
     return true;
   return false;
 }
