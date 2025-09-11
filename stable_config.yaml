@@ -1,0 +1,74 @@
+env:
+  xml_path: models/quadruped.xml
+  foot_geoms: [foot_fl, foot_fr, foot_rl, foot_rr]
+
+  action_scale: 0.05  # 매우 작은 액션 스케일
+  frame_skip: 5      # 더 작은 프레임 스킵
+  init_height: 0.12  # 매우 낮은 초기 높이 (12cm)
+  max_episode_sec: 30.0  # 짧은 에피소드
+
+  # 고정 속도(매우 느리게)
+  target_vx: 0.05
+  include_cmd: true
+  sample_cmd_per_reset: false
+  cmd_vx_min: 0.05
+  cmd_vx_max: 0.05
+
+  # 도메인 랜덤화 비활성화 (디버깅용)
+  mass_noise: 0.0
+  friction_min: 1.0
+  friction_max: 1.0
+  joint_damping_scale_min: 1.0
+  joint_damping_scale_max: 1.0
+  sensor_gyro_noise_std: 0.0
+  sensor_linvel_noise_std: 0.0
+
+  use_contact_slip_penalty: true
+  use_clip_actions: true
+  seed: 1234
+
+  # 다리/보행 기하(실제 모델에 맞춤)
+  leg_L1: 0.30  # 실제 다리 길이
+  leg_L2: 0.30
+  step_L_span: 0.05  # 매우 작은 보폭
+  step_base_h: 0.10  # 낮은 기본 발 위치
+  step_clearance: 0.01  # 최소한의 발 들기
+
+  # 참조 비활성화 (디버깅)
+  use_bezier_ref: false
+  use_residual: false
+
+  # 보상 가중치 (안정성 중심)
+  w_speed: 0.5
+  w_posture: 2.0  # 자세 유지 매우 중요
+  w_yaw: 0.05
+  w_action: 0.01  # 액션 패널티 증가
+  w_slip: 0.1
+  w_alive: 0.2  # 생존 보상 증가
+  w_angvel: 0.05
+  w_act_rate: 0.01
+
+train:
+  num_envs: 4  # 적은 환경으로 테스트
+  total_updates: 50
+  algo: PPO
+  tag: debug_stable
+  curriculum: false
+
+ppo:
+  lr: 5.0e-5  # 매우 낮은 학습률
+  clip_range: 0.1
+  vf_coef: 0.5
+  ent_coef: 0.0001
+  hidden: 64  # 작은 네트워크
+  rollout_horizon: 256  # 짧은 롤아웃
+  num_epochs: 3
+  minibatch_size: 256
+  use_cuda: true
+
+  # 안정화 옵션
+  target_kl: 0.01
+  bc_coef: 0.0
+  bc_batch: 256
+  init_ckpt: ""
+  resume_optimizer: false

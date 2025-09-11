@@ -1,5 +1,0 @@
-/home/seoneum/walk_rl/build/CMakeFiles/rl_core.dir
-/home/seoneum/walk_rl/build/CMakeFiles/train_mjppo.dir
-/home/seoneum/walk_rl/build/CMakeFiles/quad_viewer.dir
-/home/seoneum/walk_rl/build/CMakeFiles/edit_cache.dir
-/home/seoneum/walk_rl/build/CMakeFiles/rebuild_cache.dir

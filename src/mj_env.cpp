@@ -239,6 +239,11 @@ void MjEnv::randomize_state_() {
   d_->qpos[0] = 0.0;
   d_->qpos[1] = 0.0;
   d_->qpos[2] = cfg_.init_height;
+  
+  // 초기 속도를 0으로 설정 (날아가지 않도록)
+  for(int i = 0; i < m_->nv; ++i) {
+    d_->qvel[i] = 0.0;
+  }
   d_->qpos[3] = 1.0;
   d_->qpos[4] = 0.0;
   d_->qpos[5] = 0.0;
@@ -252,18 +257,18 @@ void MjEnv::randomize_state_() {
     if (jname) {
       std::string s = lower_str(jname);
       if (s.find("hip") != std::string::npos)
-        off = 0.05;
+        off = 0.0;  // 중립 위치
       if (s.find("knee") != std::string::npos)
-        off = -0.9; // 더 쭈그린 자세
+        off = -0.3; // 약간만 굽힌 자세
     }
     d_->qpos[qp] = off;
   }
 
   mj_forward(m_, d_);
-  // 발끝이 바닥 아래면 들어올리기(1cm 여유)
-  lift_body_clearance_(0.01);
+  // 발끝이 바닥 아래면 들어올리기(2cm 여유)
+  lift_body_clearance_(0.02);
   // 초기 정착
-  settle_(20);
+  settle_(50);  // 더 긴 정착 시간
 
   prev_action_.zero_();
   last_action_rate2_ = 0.0;
@@ -344,19 +349,15 @@ void MjEnv::apply_action_position_servo_(const torch::Tensor &act) {
 
   auto a = act.to(torch::kCPU).contiguous();
   const float *p = a.data_ptr<float>();
-  const double alpha = 0.2;
+  const double alpha = 0.3;  // 더 빠른 서보 반응
 
   for (int i = 0; i < act_dim_; ++i) {
     int j = act_jnt_ids_[i];
+    // IK에서 이미 처리하므로 부호 반전 제거
     double sign = 1.0;
-    if (const char *jname = mj_id2name(m_, mjOBJ_JOINT, j)) {
-      std::string s = lower_str(jname);
-      if (s.find("knee") != std::string::npos)
-        sign = -1.0; // 무릎 부호 반전
-    }
 
     double base = (cfg_.use_bezier_ref && !any_missing)
-                      ? sign * qref[i]
+                      ? qref[i]  // sign 제거
                       : d_->qpos[act_jnt_qposadr_[i]];
     double target =
         base + (cfg_.use_residual ? cfg_.residual_scale * (double)p[i] : 0.0);
@@ -375,9 +376,9 @@ void MjEnv::apply_action_position_servo_(const torch::Tensor &act) {
 bool MjEnv::is_fallen_() const {
   double r, p, y;
   quat_to_rpy_(&d_->qpos[3], r, p, y);
-  if (std::abs(r) > 0.8 || std::abs(p) > 0.8)
+  if (std::abs(r) > 0.6 || std::abs(p) > 0.6)  // 더 엄격한 기준
     return true;
-  if (d_->qpos[2] < 0.12)
+  if (d_->qpos[2] < 0.08)  // 매우 낮은 최소 높이
     return true;
   return false;
 }
