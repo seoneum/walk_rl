@@ -1,4 +1,0 @@
-Invoking command in '/home/seoneum/walk_rl/build/walk_rl': /usr/bin/cmake /home/seoneum/walk_rl -DCMAKE_INSTALL_PREFIX=/home/seoneum/walk_rl/install/walk_rl
-Invoked command in '/home/seoneum/walk_rl/build/walk_rl' returned '0': /usr/bin/cmake /home/seoneum/walk_rl -DCMAKE_INSTALL_PREFIX=/home/seoneum/walk_rl/install/walk_rl
-Invoking command in '/home/seoneum/walk_rl/build/walk_rl': /usr/bin/cmake --build /home/seoneum/walk_rl/build/walk_rl -- -j8 -l8
-Invoked command in '/home/seoneum/walk_rl/build/walk_rl' returned '0': /usr/bin/cmake --build /home/seoneum/walk_rl/build/walk_rl -- -j8 -l8
