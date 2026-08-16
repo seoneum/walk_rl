@@ -1,0 +1,28 @@
+# CMake and ROS build outputs
+build/
+install/
+log/
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+*.o
+*.d
+*.a
+*.so
+
+# Training outputs and checkpoints
+runs/
+checkpoints/
+*.pt
+*.pth
+*.ckpt
+
+# Generated captures and logs
+screenshot_*.ppm
+*.log
+
+# Editor and OS state
+.vscode/
+.idea/
+.DS_Store
